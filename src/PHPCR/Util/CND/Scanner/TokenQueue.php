@@ -54,7 +54,7 @@ class TokenQueue implements \IteratorAggregate
         return $this->tokens[key($this->tokens) + $offset];
     }
 
-    public function get($count = 1): Token|null
+    public function get($count = 1): ?Token
     {
         $item = null;
         for ($i = 1; $i <= $count; ++$i) {

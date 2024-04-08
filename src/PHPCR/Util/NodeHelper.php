@@ -137,7 +137,7 @@ class NodeHelper
      *                             $nameHint which does not exist and this implementation performs
      *                             this validation immediately
      */
-    public static function generateAutoNodeName(array $usedNames, array $namespaces, string $defaultNamespace, string $nameHint = null): string
+    public static function generateAutoNodeName(array $usedNames, array $namespaces, string $defaultNamespace, ?string $nameHint = null): string
     {
         $usedNames = array_flip($usedNames);
 

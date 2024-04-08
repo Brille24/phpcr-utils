@@ -39,7 +39,7 @@ class TreeWalker
      * @param ItemVisitorInterface      $nodeVisitor     The visitor for the nodes
      * @param ItemVisitorInterface|null $propertyVisitor The visitor for the nodes properties
      */
-    public function __construct(ItemVisitorInterface $nodeVisitor, ItemVisitorInterface $propertyVisitor = null)
+    public function __construct(ItemVisitorInterface $nodeVisitor, ?ItemVisitorInterface $propertyVisitor = null)
     {
         $this->nodeVisitor = $nodeVisitor;
         $this->propertyVisitor = $propertyVisitor;

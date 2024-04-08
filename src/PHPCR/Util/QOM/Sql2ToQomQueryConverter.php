@@ -61,7 +61,7 @@ class Sql2ToQomQueryConverter
     /**
      * @param ValueConverter|null $valueConverter to override default converter
      */
-    public function __construct(QueryObjectModelFactoryInterface $factory, ValueConverter $valueConverter = null)
+    public function __construct(QueryObjectModelFactoryInterface $factory, ?ValueConverter $valueConverter = null)
     {
         $this->factory = $factory;
         $this->valueConverter = $valueConverter ?: new ValueConverter();
@@ -313,7 +313,7 @@ class Sql2ToQomQueryConverter
      *
      * @throws \Exception
      */
-    protected function parseConstraint(ConstraintInterface $lhs = null, int $minprec = 0): ConstraintInterface|null
+    protected function parseConstraint(?ConstraintInterface $lhs = null, int $minprec = 0): ?ConstraintInterface
     {
         if (null === $lhs) {
             $lhs = $this->parsePrimaryConstraint();
@@ -924,7 +924,7 @@ class Sql2ToQomQueryConverter
      * @throws InvalidQueryException if there was no explicit selector and
      *                               there is more than one selector available
      */
-    protected function ensureSelectorName(?string $parsedName): string|null
+    protected function ensureSelectorName(?string $parsedName): ?string
     {
         if (null !== $parsedName) {
             if ((is_array($this->implicitSelectorName) && !isset($this->implicitSelectorName[$parsedName]))

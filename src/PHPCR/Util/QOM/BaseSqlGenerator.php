@@ -228,7 +228,7 @@ abstract class BaseSqlGenerator
      * @param string|null $selectorName The selector name. If it is different than the nodeTypeName, the alias is
      *                                  declared if supported by the SQL dialect.
      */
-    abstract public function evalSelector(string $nodeTypeName, string $selectorName = null): string;
+    abstract public function evalSelector(string $nodeTypeName, ?string $selectorName = null): string;
 
     /**
      * Evaluate a path. This is different between SQL1 and SQL2.
@@ -244,15 +244,15 @@ abstract class BaseSqlGenerator
      */
     abstract public function evalColumns(iterable $columns): string;
 
-    abstract public function evalColumn(string $selectorName, string $propertyName = null, string $colname = null): string;
+    abstract public function evalColumn(string $selectorName, ?string $propertyName = null, ?string $colname = null): string;
 
     abstract public function evalPropertyExistence(?string $selectorName, string $propertyName): string;
 
-    abstract public function evalPropertyValue(string $propertyName, string $selectorName = null);
+    abstract public function evalPropertyValue(string $propertyName, ?string $selectorName = null);
 
-    abstract public function evalChildNode(string $path, string $selectorName = null);
+    abstract public function evalChildNode(string $path, ?string $selectorName = null);
 
-    abstract public function evalDescendantNode(string $path, string $selectorName = null): string;
+    abstract public function evalDescendantNode(string $path, ?string $selectorName = null): string;
 
-    abstract public function evalFullTextSearch(string $selectorName, string $searchExpression, string $propertyName = null): string;
+    abstract public function evalFullTextSearch(string $selectorName, string $searchExpression, ?string $propertyName = null): string;
 }
