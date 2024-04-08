@@ -24,7 +24,7 @@ class Sql2Generator extends BaseSqlGenerator
      * @param string|null $selectorName The selector name. If it is different than
      *                                  the nodeTypeName, the alias is declared.
      */
-    public function evalSelector(string $nodeTypeName, string $selectorName = null): string
+    public function evalSelector(string $nodeTypeName, ?string $selectorName = null): string
     {
         $sql2 = $this->addBracketsIfNeeded($nodeTypeName);
 
@@ -83,7 +83,7 @@ class Sql2Generator extends BaseSqlGenerator
      *                  [',' selector2Path] ')'
      *   selector2Path ::= Path.
      */
-    public function evalSameNodeJoinCondition(string $sel1Name, string $sel2Name, string $sel2Path = null): string
+    public function evalSameNodeJoinCondition(string $sel1Name, string $sel2Name, ?string $sel2Path = null): string
     {
         $sql2 = 'ISSAMENODE('
             .$this->addBracketsIfNeeded($sel1Name).', '
@@ -127,7 +127,7 @@ class Sql2Generator extends BaseSqlGenerator
     /**
      * SameNode ::= 'ISSAMENODE(' [selectorName ','] Path ')'.
      */
-    public function evalSameNode(string $path, string $selectorName = null): string
+    public function evalSameNode(string $path, ?string $selectorName = null): string
     {
         $sql2 = 'ISSAMENODE(';
         $sql2 .= null === $selectorName ? $path : $this->addBracketsIfNeeded($selectorName).', '.$path;
@@ -139,7 +139,7 @@ class Sql2Generator extends BaseSqlGenerator
     /**
      * SameNode ::= 'ISCHILDNODE(' [selectorName ','] Path ')'.
      */
-    public function evalChildNode(string $path, string $selectorName = null): string
+    public function evalChildNode(string $path, ?string $selectorName = null): string
     {
         $sql2 = 'ISCHILDNODE(';
         $sql2 .= null === $selectorName ? $path : $this->addBracketsIfNeeded($selectorName).', '.$path;
@@ -151,7 +151,7 @@ class Sql2Generator extends BaseSqlGenerator
     /**
      * SameNode ::= 'ISDESCENDANTNODE(' [selectorName ','] Path ')'.
      */
-    public function evalDescendantNode(string $path, string $selectorName = null): string
+    public function evalDescendantNode(string $path, ?string $selectorName = null): string
     {
         $sql2 = 'ISDESCENDANTNODE(';
         $sql2 .= null === $selectorName ? $path : $this->addBracketsIfNeeded($selectorName).', '.$path;
@@ -179,7 +179,7 @@ class Sql2Generator extends BaseSqlGenerator
      *                    FullTextSearchExpression ')'
      * FullTextSearchExpression ::= BindVariable | ''' FullTextSearchLiteral '''.
      */
-    public function evalFullTextSearch(string $selectorName, string $searchExpression, string $propertyName = null): string
+    public function evalFullTextSearch(string $selectorName, string $searchExpression, ?string $propertyName = null): string
     {
         $propertyName = $propertyName ?: '*';
 
@@ -201,7 +201,7 @@ class Sql2Generator extends BaseSqlGenerator
     /**
      * NodeName ::= 'NAME(' [selectorName] ')'.
      */
-    public function evalNodeName(string $selectorValue = null): string
+    public function evalNodeName(?string $selectorValue = null): string
     {
         return "NAME($selectorValue)";
     }
@@ -209,7 +209,7 @@ class Sql2Generator extends BaseSqlGenerator
     /**
      * NodeLocalName ::= 'LOCALNAME(' [selectorName] ')'.
      */
-    public function evalNodeLocalName(string $selectorValue = null): string
+    public function evalNodeLocalName(?string $selectorValue = null): string
     {
         return "LOCALNAME($selectorValue)";
     }
@@ -217,7 +217,7 @@ class Sql2Generator extends BaseSqlGenerator
     /**
      * FullTextSearchScore ::= 'SCORE(' [selectorName] ')'.
      */
-    public function evalFullTextSearchScore(string $selectorValue = null): string
+    public function evalFullTextSearchScore(?string $selectorValue = null): string
     {
         return "SCORE($selectorValue)";
     }
@@ -225,7 +225,7 @@ class Sql2Generator extends BaseSqlGenerator
     /**
      * PropertyValue ::= [selectorName'.'] propertyName     // If only one selector exists.
      */
-    public function evalPropertyValue(string $propertyName, string $selectorName = null): string
+    public function evalPropertyValue(string $propertyName, ?string $selectorName = null): string
     {
         $sql2 = null !== $selectorName ? $this->addBracketsIfNeeded($selectorName).'.' : '';
         if ('*' !== $propertyName && !str_starts_with($propertyName, '[')) {
@@ -267,7 +267,7 @@ class Sql2Generator extends BaseSqlGenerator
      * propertyName ::= Name
      * columnName ::= Name.
      */
-    public function evalColumn(string $selectorName, string $propertyName = null, string $colname = null): string
+    public function evalColumn(string $selectorName, ?string $propertyName = null, ?string $colname = null): string
     {
         $sql2 = '';
         if (null !== $selectorName && null === $propertyName && null === $colname) {

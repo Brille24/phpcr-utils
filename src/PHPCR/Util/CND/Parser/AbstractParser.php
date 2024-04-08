@@ -31,7 +31,7 @@ abstract class AbstractParser
      * If the data is not provided (equal to null) then only the token type is checked.
      * Return false otherwise.
      */
-    protected function checkToken(int $type, string $data = null, bool $ignoreCase = false): bool
+    protected function checkToken(int $type, ?string $data = null, bool $ignoreCase = false): bool
     {
         if ($this->tokenQueue->isEof()) {
             return false;
@@ -79,7 +79,7 @@ abstract class AbstractParser
      *
      * @throws ParserException
      */
-    protected function expectToken(int $type, string $data = null): Token
+    protected function expectToken(int $type, ?string $data = null): Token
     {
         $token = $this->tokenQueue->peek();
 
@@ -99,7 +99,7 @@ abstract class AbstractParser
      * @param int         $type The expected token type
      * @param string|null $data The expected token data or null
      */
-    protected function checkAndExpectToken(int $type, string $data = null): false|Token
+    protected function checkAndExpectToken(int $type, ?string $data = null): false|Token
     {
         if ($this->checkToken($type, $data)) {
             $token = $this->tokenQueue->peek();

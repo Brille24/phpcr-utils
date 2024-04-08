@@ -130,7 +130,7 @@ abstract class BaseQomToSqlQueryConverter
     /**
      * FullTextSearchExpression ::= BindVariable | ''' FullTextSearchLiteral '''.
      *
-     * @param string|QOM\StaticOperandInterface $expr
+     * @param string|StaticOperandInterface $expr
      */
     protected function convertFullTextSearchExpression($expr): string
     {
@@ -169,7 +169,7 @@ abstract class BaseQomToSqlQueryConverter
      *
      * @throws \InvalidArgumentException
      */
-    protected function convertStaticOperand(QOM\StaticOperandInterface $operand): string
+    protected function convertStaticOperand(StaticOperandInterface $operand): string
     {
         if ($operand instanceof QOM\BindVariableValueInterface) {
             return $this->convertBindVariable($operand->getBindVariableName());

@@ -19,7 +19,7 @@ class Sql1Generator extends BaseSqlGenerator
      * @param string      $nodeTypeName The node type of the selector. If it does not contain starting and ending brackets ([]) they will be added automatically
      * @param string|null $selectorName (unused)
      */
-    public function evalSelector(string $nodeTypeName, string $selectorName = null): string
+    public function evalSelector(string $nodeTypeName, ?string $selectorName = null): string
     {
         return $nodeTypeName;
     }
@@ -43,7 +43,7 @@ class Sql1Generator extends BaseSqlGenerator
     /**
      * SameNode ::= 'jcr:path like Path/% and not jcr:path like Path/%/%'.
      */
-    public function evalChildNode(string $path, string $selectorName = null): string
+    public function evalChildNode(string $path, ?string $selectorName = null): string
     {
         $path = $this->getPathForDescendantQuery($path);
         $sql1 = "jcr:path LIKE '".$path."'";
@@ -57,7 +57,7 @@ class Sql1Generator extends BaseSqlGenerator
      *
      * @param string|null $selectorName Unused
      */
-    public function evalDescendantNode(string $path, string $selectorName = null): string
+    public function evalDescendantNode(string $path, ?string $selectorName = null): string
     {
         $path = $this->getPathForDescendantQuery($path);
 
@@ -84,7 +84,7 @@ class Sql1Generator extends BaseSqlGenerator
      *
      * @param string $selectorName unusued
      */
-    public function evalFullTextSearch(string $selectorName, string $searchExpression, string $propertyName = null): string
+    public function evalFullTextSearch(string $selectorName, string $searchExpression, ?string $propertyName = null): string
     {
         $propertyName = $propertyName ?: '*';
 
@@ -123,7 +123,7 @@ class Sql1Generator extends BaseSqlGenerator
      *
      * @param string|null $selectorName unused in SQL1
      */
-    public function evalPropertyValue(string $propertyName, string $selectorName = null): string
+    public function evalPropertyValue(string $propertyName, ?string $selectorName = null): string
     {
         return $propertyName;
     }
@@ -137,7 +137,7 @@ class Sql1Generator extends BaseSqlGenerator
      * @param string      $selectorName unused in SQL1
      * @param string|null $colname      unused in SQL1
      */
-    public function evalColumn(string $selectorName, string $propertyName = null, string $colname = null): string
+    public function evalColumn(string $selectorName, ?string $propertyName = null, ?string $colname = null): string
     {
         return $propertyName;
     }
