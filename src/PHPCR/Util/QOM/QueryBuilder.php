@@ -400,7 +400,7 @@ class QueryBuilder
     /**
      * Gets the query built.
      */
-    public function getQuery(): ?QueryObjectModelInterface
+    public function getQuery(): QueryObjectModelInterface
     {
         if (null !== $this->query && self::STATE_CLEAN === $this->state) {
             return $this->query;
