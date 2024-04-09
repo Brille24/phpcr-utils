@@ -4,6 +4,11 @@ Changelog
 2.x
 ---
 
+2.0.2
+-----
+
+* Return type for `PHPCR\Util\QOM\QueryBuilder::getQuery` is not nullable.
+
 2.0.1
 -----
 
